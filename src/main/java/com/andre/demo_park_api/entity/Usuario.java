@@ -1,10 +1,10 @@
 package com.andre.demo_park_api.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -20,12 +20,17 @@ public class Usuario implements Serializable {
     @Column(name = "id")
     private long id;
 
+    @JsonProperty("username")
+    @NotBlank(message = "Usuário não pode ser null")
     @Column(name = "username", nullable = false, unique = true, length = 100)
     private String username;
 
+    @JsonProperty("password")
+    @NotBlank(message = "Password não pode ser null")
     @Column(name = "password", nullable = false, length = 200)
     private String password;
 
+    @JsonProperty("role")
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false, length = 25)
     private Role role;
