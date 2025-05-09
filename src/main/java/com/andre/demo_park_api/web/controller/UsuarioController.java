@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/usuarios")
 public class UsuarioController {
@@ -28,4 +30,16 @@ public class UsuarioController {
         Usuario user = usuarioService.buscarPorId(id);
         return ResponseEntity.ok().body(user);
     }
+
+    @GetMapping("/getAll")
+    public List<Usuario> getAllUsers(){
+        return usuarioService.buscarTodos();
+    }
+
+    @DeleteMapping("/{id}")
+    public  ResponseEntity<Usuario> deleteById(@PathVariable Long id){
+        Usuario user = usuarioService.excluirPorId(id);
+        return ResponseEntity.ok().body(user);
+    }
+
 }

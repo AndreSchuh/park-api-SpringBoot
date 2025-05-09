@@ -3,10 +3,11 @@ package com.andre.demo_park_api.service;
 import com.andre.demo_park_api.entity.Usuario;
 import com.andre.demo_park_api.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@RequiredArgsConstructor
+import java.util.List;
+
+//@RequiredArgsConstructor
 @Service
 public class UsuarioService {
 
@@ -27,4 +28,19 @@ public class UsuarioService {
                 () -> new RuntimeException("Usuario nao encontrado")
         );
     }
+
+    @Transactional
+    public List<Usuario> buscarTodos(){
+        return usuarioRepository.findAll();
+    }
+
+    @Transactional
+    public Usuario excluirPorId(Long id){
+        if (!usuarioRepository.existsById(id)) {
+            throw new RuntimeException("Usuário não encontrado");
+        }
+        usuarioRepository.deleteById(id);
+        return null;
+    }
+
 }
