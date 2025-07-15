@@ -43,4 +43,12 @@ public class UsuarioService {
         return null;
     }
 
+    @Transactional
+    public Usuario editarSenha(Long id, String password){
+        Usuario user = buscarPorId(id);
+        user.setPassword(password);
+        return user;
+    }
+
+
 }
