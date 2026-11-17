@@ -17,7 +17,7 @@ Java · Spring Boot · Spring Data JPA · MySQL · Lombok · Maven
 
 ## Como rodar
 1. Crie o banco `demo_park` no MySQL.
-2. Ajuste usuário e senha em `src/main/resources/application.properties`.
+2. Defina as variáveis de ambiente `DB_USERNAME` (padrão: `root`) e `DB_PASSWORD`.
 3. Execute:
 ```bash
 ./mvnw spring-boot:run
